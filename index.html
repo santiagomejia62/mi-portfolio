@@ -450,9 +450,10 @@ async function jfetch(url) {
 async function fetchStocks(tickers) {
   if (!tickers.length) return;
   const syms = tickers.join(',');
-  const url = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${syms}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketPreviousClose,shortName,currency`;
   try {
-    const d = await jfetch(url);
+    // Usar proxy serverless con crumb (Yahoo Finance bloquea requests directos)
+    const d = await fetch(`/api/quote?symbols=${encodeURIComponent(syms)}`, { cache: 'no-store' })
+      .then(r => r.json());
     (d?.quoteResponse?.result || []).forEach(q => {
       P[q.symbol.toUpperCase()] = {
         price: q.regularMarketPrice,
@@ -473,7 +474,11 @@ async function fetchStocks(tickers) {
 
 async function fetchCryptos(tickers) {
   if (!tickers.length) return;
-  const ids = tickers.map(t => CM[t.toUpperCase()] || t.toLowerCase());
+  // Normalizar ticker: BTC-USD → BTC para buscar en CM (CoinGecko usa IDs como 'bitcoin')
+  const ids = tickers.map(t => {
+    const base = t.toUpperCase().replace(/-USD$|-USDT$|-BUSD$|-BTC$/, '');
+    return CM[base] || CM[t.toUpperCase()] || t.toLowerCase().replace(/-usd$|-usdt$/, '');
+  });
   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids.join(',')}&vs_currencies=usd&include_24hr_change=true`;
   try {
     const d = await fetch(url, { cache: 'no-store' }).then(r => r.json());
