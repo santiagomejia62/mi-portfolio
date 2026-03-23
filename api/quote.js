@@ -1,6 +1,6 @@
 // Vercel serverless — fuentes de precios:
-//   • Stooq      → acciones US/internacionales (sin API key)
-//   • Google Finance (scraping) → acciones BVC Colombia (.CL)
+//   • Stooq              → acciones US/internacionales (sin API key)
+//   • TradingView Scanner → acciones BVC Colombia (.CL) — POST sin auth
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
@@ -20,92 +20,53 @@ export default async function handler(req, res) {
     return s;
   }
 
-  // ── Google Finance scraping (BVC Colombia) ─────────────────────────────────
+  // ── TradingView Scanner (BVC Colombia) ────────────────────────────────────
+  // Endpoint público del screener de TradingView — sin API key, sin auth
+  // Documentado en github.com/shner-elmo/TradingView-Screener y variantes
   async function fetchBVC(symbol) {
     const bvcSym = symbol.replace(/\.CL$/i, '');
-    const url = `https://www.google.com/finance/quote/${encodeURIComponent(bvcSym)}:BVC`;
 
-    const r = await fetch(url, {
+    const body = {
+      filter: [{ left: 'name', operation: 'equal', right: bvcSym }],
+      columns: ['close', 'change', 'change_abs', 'description'],
+      sort: { sortBy: 'name', sortOrder: 'asc' },
+      range: [0, 1],
+    };
+
+    const r = await fetch('https://scanner.tradingview.com/colombia/scan', {
+      method: 'POST',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Origin': 'https://www.tradingview.com',
+        'Referer': 'https://www.tradingview.com/screener/',
       },
+      body: JSON.stringify(body),
     });
-    if (!r.ok) throw new Error(`Google Finance HTTP ${r.status} para ${symbol}`);
-    const html = await r.text();
 
-    // ── Extraer precio ──────────────────────────────────────────────────────
-    // Google Finance SSR embeds the price in multiple places; intentar varios.
-    let price = null;
+    if (!r.ok) throw new Error(`TradingView HTTP ${r.status} para ${symbol}`);
 
-    // Método 1: clase YMlKec fxKbKc (precio principal en versión desktop SSR)
-    const m1 = html.match(/class="YMlKec fxKbKc"[^>]*>\s*([\d,.\s]+)/);
-    if (m1) {
-      const raw = m1[1].replace(/\s/g, '');
-      // Formato US: 65,800.00  →  65800.00
-      // Formato EU: 65.800,00  →  65800.00
-      price = parseNum(raw);
+    const data = await r.json();
+    const row = data?.data?.[0]?.d;
+
+    if (!row || row[0] == null) {
+      throw new Error(`TradingView: sin datos para ${symbol} en BVC`);
     }
 
-    // Método 2: data-last-price attribute (presente en algunas variantes)
-    if (price === null || isNaN(price)) {
-      const m2 = html.match(/data-last-price="([\d.]+)"/);
-      if (m2) price = parseFloat(m2[1]);
-    }
-
-    // Método 3: JSON embebido — buscar patrón "PFCIBEST":{"price":65800,...}
-    if (price === null || isNaN(price)) {
-      const re = new RegExp(`"${bvcSym}"[^}]{0,300}"price":\\s*"?([\\d.]+)"?`);
-      const m3 = html.match(re);
-      if (m3) price = parseFloat(m3[1]);
-    }
-
-    // Método 4: buscar el valor directamente por rango conocido (COP suele ser >1000)
-    if (price === null || isNaN(price)) {
-      // Buscar números de 5+ dígitos precedidos de COP o $
-      const m4 = html.match(/(?:COP|₡|\$)\s*([\d,. ]{5,})/);
-      if (m4) price = parseNum(m4[1].replace(/\s/g, ''));
-    }
-
-    if (!price || isNaN(price)) {
-      throw new Error(`Google Finance: no se pudo extraer precio para ${symbol}`);
-    }
-
-    // ── Extraer cambio del día ──────────────────────────────────────────────
-    let change = 0, changePct = 0;
-
-    // Patrón: +1,234.00 (+1.92%) o -500 (-0.75%)
-    const changeMatch = html.match(/([+-][\d,. ]+)\s*\(([+-]?[\d.]+)%\)/);
-    if (changeMatch) {
-      change    = parseNum(changeMatch[1]);
-      changePct = parseFloat(changeMatch[2]);
-      if (isNaN(change))    change = 0;
-      if (isNaN(changePct)) changePct = 0;
-    }
+    const close     = parseFloat(row[0]);                  // precio actual (COP)
+    const changePct = parseFloat(row[1]) || 0;             // % cambio del día
+    const changeAbs = parseFloat(row[2]) || 0;             // cambio absoluto en COP
+    const desc      = String(row[3] || bvcSym);            // nombre largo
 
     return {
       symbol,
-      regularMarketPrice:          price,
-      regularMarketChange:         change,
-      regularMarketChangePercent:  changePct,
-      regularMarketPreviousClose:  price - change,
-      shortName:                   bvcSym,
-      currency:                    'COP',
+      regularMarketPrice:         close,
+      regularMarketChange:        changeAbs,
+      regularMarketChangePercent: changePct,
+      regularMarketPreviousClose: close - changeAbs,
+      shortName:                  desc,
+      currency:                   'COP',
     };
-  }
-
-  // Parsear número con separadores mixtos (US y EU)
-  function parseNum(s) {
-    if (!s) return NaN;
-    s = s.trim();
-    // Si termina con ,XX (2 decimales europeo) → quitar puntos de miles, coma→punto
-    if (/,\d{2}$/.test(s)) return parseFloat(s.replace(/\./g, '').replace(',', '.'));
-    // Si termina con .XX (2 decimales US) → quitar comas de miles
-    if (/\.\d{2}$/.test(s)) return parseFloat(s.replace(/,/g, ''));
-    // Sin decimales visibles → quitar separadores
-    return parseFloat(s.replace(/[,. ]/g, ''));
   }
 
   // ── Fetch en paralelo ──────────────────────────────────────────────────────
@@ -149,8 +110,7 @@ export default async function handler(req, res) {
     if (r.status === 'rejected') failed.push(bvcTickers[i] + ': ' + r.reason?.message);
   });
 
-  // bvcUnavailable: tickers BVC que fallaron (para que el frontend los marque diferente)
-  const bvcUnavailable = bvcTickers.filter((t, i) => bvcResults[i]?.status === 'rejected');
+  const bvcUnavailable = bvcTickers.filter((_, i) => bvcResults[i]?.status === 'rejected');
 
   return res.json({
     quoteResponse: {
