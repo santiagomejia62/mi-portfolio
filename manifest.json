@@ -1,7 +1,7 @@
 {
   "name": "Mi Portfolio",
   "short_name": "Portfolio",
-  "description": "Dashboard de inversiones en tiempo real",
+  "description": "Tracker de portafolio de inversiones – acciones, criptos y más",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -14,7 +14,5 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ],
-  "categories": ["finance", "productivity"],
-  "lang": "es"
+  ]
 }

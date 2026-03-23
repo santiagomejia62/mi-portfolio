@@ -1,51 +1,37 @@
-const CACHE_NAME = 'portfolio-v2';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon.svg',
-  'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js'
-];
+const V = 'mpf-v1';
+const SHELL = ['./index.html', './manifest.json', './icon.svg'];
+const API_HOSTS = ['yahoo', 'coingecko', 'exchangerate', 'allorigins'];
 
-// Install: cache all assets
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())
-  );
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)));
+  self.skipWaiting();
 });
 
-// Activate: clean old caches
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(ks =>
+      Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))
+    )
   );
+  self.clients.claim();
 });
 
-// Fetch: network-first for API calls, cache-first for assets
-self.addEventListener('fetch', event => {
-  const url = event.request.url;
+self.addEventListener('fetch', e => {
+  const url = e.request.url;
+  const isAPI = API_HOSTS.some(h => url.includes(h));
 
-  // Always fetch live for price APIs
-  if (url.includes('yahoo.com') || url.includes('coingecko.com') || url.includes('corsproxy.io')) {
-    event.respondWith(
-      fetch(event.request).catch(() => new Response('{}', { headers: { 'Content-Type': 'application/json' } }))
+  if (isAPI) {
+    // Network-only for API calls; return empty JSON on failure
+    e.respondWith(
+      fetch(e.request).catch(() =>
+        new Response('{}', { headers: { 'Content-Type': 'application/json' } })
+      )
     );
     return;
   }
 
-  // Cache-first for app assets
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-      return fetch(event.request).then(response => {
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        }
-        return response;
-      });
-    })
+  // Cache-first for app shell
+  e.respondWith(
+    caches.match(e.request).then(cached => cached || fetch(e.request))
   );
 });
