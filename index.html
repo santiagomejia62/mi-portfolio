@@ -464,8 +464,11 @@ async function fetchStocks(tickers) {
         err: false,
       };
     });
-    // Mark not-found as error
-    tickers.forEach(t => { if (!P[t]) P[t] = { price: null, err: true, name: t }; });
+    // Tickers BVC sin cobertura → marcar con err:'bvc' (distinto de ticker inválido)
+    const bvcFailed = new Set((d?.quoteResponse?.bvcUnavailable || []).map(s => s.toUpperCase()));
+    tickers.forEach(t => {
+      if (!P[t]) P[t] = { price: null, err: bvcFailed.has(t) ? 'bvc' : true, name: t };
+    });
   } catch(e) {
     console.warn('Yahoo error:', e);
     tickers.forEach(t => { if (!P[t]) P[t] = { price: null, err: true, name: t }; });
@@ -660,8 +663,8 @@ function rHoldings() {
           <div class="c-name">${p?.name || h.tk}</div>
         </div>
         <div class="c-right">
-          <div class="c-value">${has ? fmt(h.val) : p?.err ? '<span class="r" style="font-size:11px">⚠ Ticker no encontrado</span>' : '<span class="m" style="font-size:12px">Sin precio</span>'}</div>
-          <div class="c-pnl ${col(h.pnl)}">${has ? `${h.pnl >= 0 ? '+' : ''}${fmt(h.pnl, true)} (${fp(h.pct)})` : p?.err ? '<span style="font-size:10px;color:var(--muted)">Verifica el ticker en Yahoo Finance</span>' : '—'}</div>
+          <div class="c-value">${has ? fmt(h.val) : p?.err === 'bvc' ? '<span class="m" style="font-size:11px">🇨🇴 BVC — sin datos</span>' : p?.err ? '<span class="r" style="font-size:11px">⚠ Ticker no encontrado</span>' : '<span class="m" style="font-size:12px">Sin precio</span>'}</div>
+          <div class="c-pnl ${col(h.pnl)}">${has ? `${h.pnl >= 0 ? '+' : ''}${fmt(h.pnl, true)} (${fp(h.pct)})` : p?.err === 'bvc' ? '<span style="font-size:10px;color:var(--muted)">Proveedor sin cobertura BVC · precio manual</span>' : p?.err ? '<span style="font-size:10px;color:var(--muted)">Verifica el ticker</span>' : '—'}</div>
         </div>
       </div>
       <div class="card-bot">
@@ -959,7 +962,8 @@ render();
 // Auto-refresh if data > 30 min old, never refreshed, OR any holding has a stale error
 if (H.length) {
   const age = TS ? Date.now() - new Date(TS).getTime() : Infinity;
-  const hasErrors = H.some(h => !P[h.tk.toUpperCase()] || P[h.tk.toUpperCase()]?.err);
+  // No reintentar BVC (err:'bvc') — ya sabemos que no hay cobertura, sólo recargar errores reales
+  const hasErrors = H.some(h => { const p = P[h.tk.toUpperCase()]; return !p || (p.err && p.err !== 'bvc'); });
   if (age > 30 * 60 * 1000 || hasErrors) doRefresh();
 }
 </script>
