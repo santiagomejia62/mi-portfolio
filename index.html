@@ -450,9 +450,10 @@ async function jfetch(url) {
 async function fetchStocks(tickers) {
   if (!tickers.length) return;
   const syms = tickers.join(',');
-  const url = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${syms}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketPreviousClose,shortName,currency`;
+  // Proxy serverless en Vercel — evita bloqueos CORS y anti-bot de Yahoo
+  const url = `/api/quote?symbols=${encodeURIComponent(syms)}`;
   try {
-    const d = await jfetch(url);
+    const d = await fetch(url, { cache: 'no-store' }).then(r => r.json());
     (d?.quoteResponse?.result || []).forEach(q => {
       P[q.symbol.toUpperCase()] = {
         price: q.regularMarketPrice,
@@ -830,11 +831,11 @@ async function searchTickers(q) {
       const isCrypto = r.quoteType === 'CRYPTOCURRENCY';
       const exLabel = isBVC ? '🇨🇴 BVC' : (r.exchDisp || r.exchange || '');
       const typeLabel = isCrypto ? 'Cripto' : r.typeDisp || 'Acción';
-      return `<div class="ac-item" ontouchstart=""
+      return `<div class="ac-item"
                    data-sym="${r.symbol}"
                    data-bvc="${isBVC}"
                    data-crypto="${isCrypto}"
-                   onclick="selectTicker(this)">
+                   onpointerdown="event.preventDefault(); selectTicker(this)">
         <span class="ac-sym">${r.symbol}</span>
         <div class="ac-info">
           <div class="ac-name">${r.shortname || r.longname || r.symbol}</div>
