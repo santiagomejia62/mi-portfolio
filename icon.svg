@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#0f172a"/>
+  <!-- Chart bars -->
+  <rect x="80" y="300" width="70" height="150" rx="10" fill="#3b82f6" opacity="0.6"/>
+  <rect x="180" y="220" width="70" height="230" rx="10" fill="#3b82f6" opacity="0.8"/>
+  <rect x="280" y="160" width="70" height="290" rx="10" fill="#22c55e" opacity="0.9"/>
+  <rect x="380" y="100" width="70" height="350" rx="10" fill="#22c55e"/>
+  <!-- Trend line -->
+  <polyline points="115,290 215,210 315,150 415,90" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Dot at peak -->
+  <circle cx="415" cy="90" r="16" fill="#f59e0b"/>
+  <!-- Dollar sign -->
+  <text x="256" y="60" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="48" font-weight="900" fill="#f59e0b">$</text>
+</svg>
