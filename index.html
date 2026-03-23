@@ -813,9 +813,10 @@ function hideDropAfter() {
 }
 
 async function searchTickers(q) {
-  const url = `https://query2.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(q)}&quotesCount=8&newsCount=0&listsCount=0&enableFuzzyQuery=true`;
+  // Proxy serverless en Vercel — evita bloqueos CORS y anti-bot de Yahoo
+  const url = `/api/search?q=${encodeURIComponent(q)}`;
   try {
-    const data = await jfetch(url);
+    const data = await fetch(url, { cache: 'no-store' }).then(r => r.json());
     const quotes = (data?.quotes || []).filter(r =>
       r.isYahooFinance && r.symbol &&
       ['EQUITY','CRYPTOCURRENCY','ETF','INDEX'].includes(r.quoteType)
