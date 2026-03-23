@@ -951,10 +951,11 @@ if ('serviceWorker' in navigator) {
 load();
 render();
 
-// Auto-refresh if data > 30 min old or never refreshed
+// Auto-refresh if data > 30 min old, never refreshed, OR any holding has a stale error
 if (H.length) {
   const age = TS ? Date.now() - new Date(TS).getTime() : Infinity;
-  if (age > 30 * 60 * 1000) doRefresh();
+  const hasErrors = H.some(h => !P[h.tk.toUpperCase()] || P[h.tk.toUpperCase()]?.err);
+  if (age > 30 * 60 * 1000 || hasErrors) doRefresh();
 }
 </script>
 </body>
