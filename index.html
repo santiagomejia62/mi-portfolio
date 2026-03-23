@@ -450,10 +450,9 @@ async function jfetch(url) {
 async function fetchStocks(tickers) {
   if (!tickers.length) return;
   const syms = tickers.join(',');
-  // Proxy serverless en Vercel — evita bloqueos CORS y anti-bot de Yahoo
-  const url = `/api/quote?symbols=${encodeURIComponent(syms)}`;
+  const url = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${syms}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketPreviousClose,shortName,currency`;
   try {
-    const d = await fetch(url, { cache: 'no-store' }).then(r => r.json());
+    const d = await jfetch(url);
     (d?.quoteResponse?.result || []).forEach(q => {
       P[q.symbol.toUpperCase()] = {
         price: q.regularMarketPrice,
