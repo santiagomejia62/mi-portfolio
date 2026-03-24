@@ -301,7 +301,7 @@
   <div class="logo">ð¼ Mi<span>Portfolio</span></div>
   <div class="header-right">
     <button class="cur-btn" id="curBtn" onclick="toggleCur()">USD</button>
-    <button class="icon-btn" id="refBtn" onclick="doRefresh()" title="Actualizar">â»</button>
+    <button class="icon-btn" onclick="exportData()" title="Exportar portafolio">&#x1F4E4;</button><label class="icon-btn" style="cursor:pointer;display:flex;align-items:center;justify-content:center" title="Importar portafolio">&#x1F4E5;<input type="file" accept=".json" onchange="importData(event)" style="display:none"></label><button class="icon-btn" id="refBtn" onclick="doRefresh()" title="Actualizar">â»</button>
   </div>
 </header>
 
