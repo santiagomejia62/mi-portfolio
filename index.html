@@ -34,7 +34,7 @@
       overscroll-behavior: none;
     }
 
-    /* ── HEADER ── */
+    /* ââ HEADER ââ */
     header {
       position: sticky;
       top: 0;
@@ -82,10 +82,10 @@
     }
     .cur-btn.cop { background: rgba(99,102,241,.2); border-color: var(--accent); color: var(--accent2); }
 
-    /* ── MAIN ── */
+    /* ââ MAIN ââ */
     main { padding: 0 14px 110px; max-width: 540px; margin: 0 auto; }
 
-    /* ── SUMMARY ── */
+    /* ââ SUMMARY ââ */
     .summary {
       background: linear-gradient(145deg, #1e293b, #192035);
       border: 1px solid var(--border);
@@ -109,10 +109,10 @@
 
     .ts { text-align: center; font-size: 11px; color: var(--muted); padding: 6px 0 10px; }
 
-    /* ── SECTION ── */
+    /* ââ SECTION ââ */
     .sec { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin: 14px 0 6px; }
 
-    /* ── HOLDING CARD ── */
+    /* ââ HOLDING CARD ââ */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -143,7 +143,7 @@
     .bar { height: 3px; background: var(--border); border-radius: 3px; margin-top: 10px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 3px; transition: width .5s ease; }
 
-    /* ── BADGES ── */
+    /* ââ BADGES ââ */
     .badge {
       display: inline-flex; align-items: center;
       font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 20px;
@@ -154,13 +154,13 @@
     .bt { background: rgba(99,102,241,.13); color: var(--accent2); font-size: 10px; border-radius: 4px; padding: 1px 5px; }
     .bb { background: var(--border); color: var(--muted); font-size: 10px; border-radius: 4px; padding: 1px 5px; }
 
-    /* ── EMPTY ── */
+    /* ââ EMPTY ââ */
     .empty { text-align: center; padding: 60px 20px; }
     .empty-ico { font-size: 54px; margin-bottom: 14px; }
     .empty-t { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
     .empty-s { font-size: 13px; color: var(--muted); }
 
-    /* ── FAB ── */
+    /* ââ FAB ââ */
     .fab {
       position: fixed; bottom: 26px; right: 22px;
       width: 56px; height: 56px; border-radius: 50%;
@@ -172,7 +172,7 @@
     }
     .fab:active { transform: scale(0.91); }
 
-    /* ── MODAL ── */
+    /* ââ MODAL ââ */
     .overlay {
       position: fixed; inset: 0;
       background: rgba(0,0,0,.72);
@@ -198,7 +198,7 @@
     .handle { width: 38px; height: 4px; background: var(--border); border-radius: 2px; margin: 8px auto 18px; }
     .modal-t { font-size: 17px; font-weight: 700; margin-bottom: 18px; }
 
-    /* ── TYPE SELECTOR ── */
+    /* ââ TYPE SELECTOR ââ */
     .type-row { display: flex; gap: 8px; margin-bottom: 18px; }
     .type-btn {
       flex: 1; padding: 10px;
@@ -207,7 +207,7 @@
     }
     .type-btn.on { background: rgba(99,102,241,.13); border-color: var(--accent); color: var(--accent2); }
 
-    /* ── FORM ── */
+    /* ââ FORM ââ */
     .fg { margin-bottom: 14px; }
     .fg label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
     .fg input {
@@ -224,7 +224,7 @@
     .mini-cur button.on { background: var(--accent); color: #fff; }
     .mini-cur button:active { opacity: 0.75; }
 
-    /* ── AUTOCOMPLETE ── */
+    /* ââ AUTOCOMPLETE ââ */
     .ac-wrap { position: relative; }
     .ac-drop {
       position: absolute; top: calc(100% + 5px); left: 0; right: 0;
@@ -268,7 +268,7 @@
       font-size: 14px; font-weight: 600;
     }
 
-    /* ── TOAST ── */
+    /* ââ TOAST ââ */
     .toast {
       position: fixed; bottom: 88px; left: 50%; transform: translateX(-50%);
       background: var(--surface); border: 1px solid var(--border);
@@ -280,12 +280,12 @@
     @keyframes tin { from { opacity:0; transform:translateX(-50%) translateY(8px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
     @keyframes tout { to { opacity:0; } }
 
-    /* ── COLORS ── */
+    /* ââ COLORS ââ */
     .g { color: var(--green); }
     .r { color: var(--red); }
     .m { color: var(--muted); }
 
-    /* ── OFFLINE BANNER ── */
+    /* ââ OFFLINE BANNER ââ */
     .offline-bar {
       background: rgba(239,68,68,.12); border-bottom: 1px solid rgba(239,68,68,.25);
       color: var(--red); font-size: 12px; font-weight: 600; text-align: center; padding: 6px;
@@ -295,13 +295,13 @@
 </head>
 <body>
 
-<div id="offlineBanner" class="offline-bar hidden">⚠ Sin conexión — mostrando precios guardados</div>
+<div id="offlineBanner" class="offline-bar hidden">â  Sin conexiÃ³n â mostrando precios guardados</div>
 
 <header>
-  <div class="logo">💼 Mi<span>Portfolio</span></div>
+  <div class="logo">ð¼ Mi<span>Portfolio</span></div>
   <div class="header-right">
     <button class="cur-btn" id="curBtn" onclick="toggleCur()">USD</button>
-    <button class="icon-btn" id="refBtn" onclick="doRefresh()" title="Actualizar">↻</button>
+    <button class="icon-btn" id="refBtn" onclick="doRefresh()" title="Actualizar">â»</button>
   </div>
 </header>
 
@@ -309,22 +309,22 @@
   <div class="summary">
     <div class="s-label">Valor total</div>
     <div class="s-total" id="sTotal">$0.00</div>
-    <div class="s-pnl m" id="sPnl">—</div>
+    <div class="s-pnl m" id="sPnl">â</div>
     <div class="s-row">
       <div class="s-stat"><div class="s-val" id="sPos">0</div><div class="s-key">Posiciones</div></div>
       <div class="s-stat"><div class="s-val" id="sStk">0</div><div class="s-key">Acciones</div></div>
       <div class="s-stat"><div class="s-val" id="sCry">0</div><div class="s-key">Criptos</div></div>
-      <div class="s-stat"><div class="s-val m" id="sDay">—</div><div class="s-key">Hoy</div></div>
+      <div class="s-stat"><div class="s-val m" id="sDay">â</div><div class="s-key">Hoy</div></div>
     </div>
   </div>
 
-  <div class="ts" id="tsEl">Toca ↻ para ver precios en vivo</div>
+  <div class="ts" id="tsEl">Toca â» para ver precios en vivo</div>
   <div id="holdList"></div>
 
   <div class="empty hidden" id="emptyEl">
-    <div class="empty-ico">📊</div>
-    <div class="empty-t">Portfolio vacío</div>
-    <div class="empty-s">Toca + para agregar tu primera posición</div>
+    <div class="empty-ico">ð</div>
+    <div class="empty-t">Portfolio vacÃ­o</div>
+    <div class="empty-s">Toca + para agregar tu primera posiciÃ³n</div>
   </div>
 </main>
 
@@ -334,20 +334,20 @@
 <div class="overlay hidden" id="overlay" onclick="bgClick(event)">
   <div class="sheet">
     <div class="handle"></div>
-    <div class="modal-t" id="modalT">Nueva posición</div>
+    <div class="modal-t" id="modalT">Nueva posiciÃ³n</div>
 
     <div class="type-row">
-      <button class="type-btn on" id="tStk" onclick="setType('stock')">📈 Acción</button>
-      <button class="type-btn" id="tCry" onclick="setType('crypto')">₿ Cripto</button>
+      <button class="type-btn on" id="tStk" onclick="setType('stock')">ð AcciÃ³n</button>
+      <button class="type-btn" id="tCry" onclick="setType('crypto')">â¿ Cripto</button>
     </div>
 
     <div class="fg">
-      <label>Ticker / Símbolo</label>
+      <label>Ticker / SÃ­mbolo</label>
       <div class="ac-wrap">
-        <input type="text" id="iTk" placeholder="Busca: Apple, Bancolombia, Bitcoin…" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="onTickerChange()" onblur="hideDropAfter()" />
+        <input type="text" id="iTk" placeholder="Busca: Apple, Bancolombia, Bitcoinâ¦" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="onTickerChange()" onblur="hideDropAfter()" />
         <div id="acDrop" class="ac-drop hidden"></div>
       </div>
-      <small id="tkHint">Escribe el nombre o ticker · BVC: agrega .CL al final · Ej: PFBCOLOM.CL</small>
+      <small id="tkHint">Escribe el nombre o ticker Â· BVC: agrega .CL al final Â· Ej: PFBCOLOM.CL</small>
     </div>
 
     <div class="fg">
@@ -364,7 +364,7 @@
           <button id="btnCOP" onclick="setAvgCur('COP')">COP</button>
         </div>
       </div>
-      <small id="avgHint">Moneda en la que compraste la posición.</small>
+      <small id="avgHint">Moneda en la que compraste la posiciÃ³n.</small>
     </div>
 
     <div class="fg">
@@ -376,14 +376,14 @@
       <button class="btn-c" onclick="closeModal()">Cancelar</button>
       <button class="btn-s" onclick="saveHolding()">Guardar</button>
     </div>
-    <button class="btn-d hidden" id="delBtn" onclick="confirmDelete()">🗑 Eliminar posición</button>
+    <button class="btn-d hidden" id="delBtn" onclick="confirmDelete()">ð Eliminar posiciÃ³n</button>
   </div>
 </div>
 
 <script>
-// ─────────────────────────────────────────────
-// CRYPTO ID MAP  (ticker → CoinGecko ID)
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
+// CRYPTO ID MAP  (ticker â CoinGecko ID)
+// âââââââââââââââââââââââââââââââââââââââââââââ
 const CM = {
   BTC:'bitcoin', ETH:'ethereum', BNB:'binancecoin', SOL:'solana',
   XRP:'ripple', ADA:'cardano', DOGE:'dogecoin', AVAX:'avalanche-2',
@@ -401,13 +401,13 @@ const CM = {
 // Accent palette for bar fills
 const PALETTE = ['#6366f1','#22c55e','#f59e0b','#ec4899','#14b8a6','#f97316','#8b5cf6','#06b6d4','#a855f7','#10b981'];
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // STATE
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 const SK = 'mpf_v3';
 let H = [];          // holdings
 let P = {};          // prices cache { TICKER: {price, change, changePct, name, currency, err} }
-let COP = 4200;      // USD→COP rate
+let COP = 4200;      // USDâCOP rate
 let DC = 'USD';      // display currency
 let TS = null;       // last updated timestamp
 let EDT = null;      // editing id
@@ -429,9 +429,9 @@ function save() {
   localStorage.setItem(SK, JSON.stringify({ H, P, COP, DC, TS }));
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // API HELPERS
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 async function jfetch(url) {
   // Direct fetch first
   try {
@@ -464,7 +464,7 @@ async function fetchStocks(tickers) {
         err: false,
       };
     });
-    // Tickers BVC sin cobertura → marcar con err:'bvc' (distinto de ticker inválido)
+    // Tickers BVC sin cobertura â marcar con err:'bvc' (distinto de ticker invÃ¡lido)
     const bvcFailed = new Set((d?.quoteResponse?.bvcUnavailable || []).map(s => s.toUpperCase()));
     tickers.forEach(t => {
       if (!P[t]) P[t] = { price: null, err: bvcFailed.has(t) ? 'bvc' : true, name: t };
@@ -477,7 +477,7 @@ async function fetchStocks(tickers) {
 
 async function fetchCryptos(tickers) {
   if (!tickers.length) return;
-  // Normalizar ticker: BTC-USD → BTC para buscar en CM (CoinGecko usa IDs como 'bitcoin')
+  // Normalizar ticker: BTC-USD â BTC para buscar en CM (CoinGecko usa IDs como 'bitcoin')
   const ids = tickers.map(t => {
     const base = t.toUpperCase().replace(/-USD$|-USDT$|-BUSD$|-BTC$/, '');
     return CM[base] || CM[t.toUpperCase()] || t.toLowerCase().replace(/-usd$|-usdt$/, '');
@@ -526,9 +526,9 @@ async function refreshAll() {
   save();
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // CALC
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function priceUSD(h) {
   const p = P[h.tk.toUpperCase()];
   if (!p || p.price === null) return null;
@@ -547,7 +547,7 @@ function calcH(h) {
   const price = priceUSD(h);
   if (price === null) return { val: 0, pnl: 0, pct: 0, price: null };
   const val = price * h.qty;
-  const avgUSD = avgToUSD(h);          // ← FIX: convert COP avg to USD
+  const avgUSD = avgToUSD(h);          // â FIX: convert COP avg to USD
   const cost = avgUSD * h.qty;
   const pnl = val - cost;
   const pct = cost > 0 ? pnl / cost * 100 : 0;
@@ -563,7 +563,7 @@ function calcAll() {
     if (avgUSD && !isNaN(avgUSD)) cost += avgUSD * h.qty;
     const p = P[h.tk.toUpperCase()];
     if (p?.change) {
-      // ← FIX: convertir cambio COP → USD para acciones BVC
+      // â FIX: convertir cambio COP â USD para acciones BVC
       const chgUSD = (p.currency === 'COP') ? p.change / COP : p.change;
       dayChg += chgUSD * h.qty;
     }
@@ -571,11 +571,11 @@ function calcAll() {
   return { val, pnl: val - cost, pct: cost > 0 ? (val - cost) / cost * 100 : 0, dayChg };
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // FORMAT
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function fmt(v, compact = false) {
-  if (v === null || isNaN(v)) return '—';
+  if (v === null || isNaN(v)) return 'â';
   const x = DC === 'COP' ? v * COP : v;
   const sym = DC === 'COP' ? 'COP' : 'USD';
   if (compact && Math.abs(x) >= 1e6) return (x >= 0 ? '' : '-') + sym + ' ' + (Math.abs(x)/1e6).toFixed(2)+'M';
@@ -587,19 +587,19 @@ function fmt(v, compact = false) {
   }).format(x);
 }
 function fmtUSD(v) {
-  if (v === null) return '—';
+  if (v === null) return 'â';
   return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'USD', minimumFractionDigits: v >= 100 ? 2 : 4 }).format(v);
 }
 function fp(v) {
-  if (v === null) return '—';
+  if (v === null) return 'â';
   return (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
 }
 function col(v) { return v === null ? 'm' : v >= 0 ? 'g' : 'r'; }
 function badgeCls(v) { return v === null ? 'bn' : v >= 0 ? 'bg' : 'br'; }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // RENDER
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function render() {
   rSummary();
   rHoldings();
@@ -615,14 +615,14 @@ function rSummary() {
   document.getElementById('sTotal').textContent = fmt(val);
   const pe = document.getElementById('sPnl');
   pe.className = 's-pnl ' + col(pnl);
-  pe.textContent = H.length ? `${pnl >= 0 ? '+' : ''}${fmt(pnl, true)} (${fp(pct)})` : '—';
+  pe.textContent = H.length ? `${pnl >= 0 ? '+' : ''}${fmt(pnl, true)} (${fp(pct)})` : 'â';
 
   document.getElementById('sPos').textContent = H.length;
   document.getElementById('sStk').textContent = stocks;
   document.getElementById('sCry').textContent = cryptos;
   const de = document.getElementById('sDay');
   de.className = 's-val ' + col(dayChg || null);
-  de.textContent = dayChg ? (dayChg >= 0 ? '+' : '') + fmt(dayChg, true) : '—';
+  de.textContent = dayChg ? (dayChg >= 0 ? '+' : '') + fmt(dayChg, true) : 'â';
 }
 
 function rHoldings() {
@@ -643,7 +643,7 @@ function rHoldings() {
     // Show price in native currency (COP for BVC stocks, USD for everything else)
     const nativeCur = p?.currency || 'USD';
     const nativePrice = p?.price;   // raw price from API (COP or USD)
-    const fmtNative = (v) => v === null ? '—' : new Intl.NumberFormat('es-CO', {
+    const fmtNative = (v) => v === null ? 'â' : new Intl.NumberFormat('es-CO', {
       style: 'currency', currency: nativeCur,
       minimumFractionDigits: v >= 100 ? 0 : 2, maximumFractionDigits: v >= 100 ? 0 : 2,
     }).format(v);
@@ -657,22 +657,22 @@ function rHoldings() {
         <div class="c-left">
           <div class="c-ticker">
             ${h.tk.toUpperCase()}
-            <span class="bt">${h.ty === 'stock' ? '📈' : '₿'}</span>
+            <span class="bt">${h.ty === 'stock' ? 'ð' : 'â¿'}</span>
             ${h.brk ? `<span class="bb">${h.brk}</span>` : ''}
           </div>
           <div class="c-name">${p?.name || h.tk}</div>
         </div>
         <div class="c-right">
-          <div class="c-value">${has ? fmt(h.val) : p?.err === 'bvc' ? '<span class="m" style="font-size:11px">🇨🇴 BVC — sin datos</span>' : p?.err ? '<span class="r" style="font-size:11px">⚠ Ticker no encontrado</span>' : '<span class="m" style="font-size:12px">Sin precio</span>'}</div>
-          <div class="c-pnl ${col(h.pnl)}">${has ? `${h.pnl >= 0 ? '+' : ''}${fmt(h.pnl, true)} (${fp(h.pct)})` : p?.err === 'bvc' ? '<span style="font-size:10px;color:var(--muted)">Proveedor sin cobertura BVC · precio manual</span>' : p?.err ? '<span style="font-size:10px;color:var(--muted)">Verifica el ticker</span>' : '—'}</div>
+          <div class="c-value">${has ? fmt(h.val) : p?.err === 'bvc' ? '<span class="m" style="font-size:11px">ð¨ð´ BVC â sin datos</span>' : p?.err ? '<span class="r" style="font-size:11px">â  Ticker no encontrado</span>' : '<span class="m" style="font-size:12px">Sin precio</span>'}</div>
+          <div class="c-pnl ${col(h.pnl)}">${has ? `${h.pnl >= 0 ? '+' : ''}${fmt(h.pnl, true)} (${fp(h.pct)})` : p?.err === 'bvc' ? '<span style="font-size:10px;color:var(--muted)">Proveedor sin cobertura BVC Â· precio manual</span>' : p?.err ? '<span style="font-size:10px;color:var(--muted)">Verifica el ticker</span>' : 'â'}</div>
         </div>
       </div>
       <div class="card-bot">
         <div>
-          <span class="c-price">${has ? fmtNative(nativePrice) : '—'}</span>
+          <span class="c-price">${has ? fmtNative(nativePrice) : 'â'}</span>
           ${has && p?.changePct !== undefined ? `<span class="badge ${badgeCls(p.changePct)}" style="margin-left:5px">${fp(p.changePct)}</span>` : ''}
         </div>
-        <div class="c-qty">${h.qty} · costo ${avgLabel}</div>
+        <div class="c-qty">${h.qty} Â· costo ${avgLabel}</div>
       </div>
       <div class="bar"><div class="bar-fill" style="width:${w.toFixed(1)}%;background:${clr}"></div></div>
     </div>`;
@@ -687,19 +687,19 @@ function rCurBtn() {
 
 function rTS() {
   const el = document.getElementById('tsEl');
-  if (!TS) { el.textContent = 'Toca ↻ para ver precios en vivo'; return; }
+  if (!TS) { el.textContent = 'Toca â» para ver precios en vivo'; return; }
   const d = new Date(TS);
-  el.textContent = 'Actualizado ' + d.toLocaleTimeString('es-CO', { hour:'2-digit', minute:'2-digit' }) + ' · ' + d.toLocaleDateString('es-CO', { day:'numeric', month:'short' });
+  el.textContent = 'Actualizado ' + d.toLocaleTimeString('es-CO', { hour:'2-digit', minute:'2-digit' }) + ' Â· ' + d.toLocaleDateString('es-CO', { day:'numeric', month:'short' });
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // ACTIONS
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function toggleCur() {
   DC = DC === 'USD' ? 'COP' : 'USD';
   save();
   render();
-  toast(`Mostrando en ${DC} ${DC === 'COP' ? '🇨🇴' : '🇺🇸'}`);
+  toast(`Mostrando en ${DC} ${DC === 'COP' ? 'ð¨ð´' : 'ðºð¸'}`);
 }
 
 async function doRefresh() {
@@ -710,21 +710,21 @@ async function doRefresh() {
   try {
     await refreshAll();
     render();
-    toast('Precios actualizados ✓');
+    toast('Precios actualizados â');
   } catch(e) {
-    toast('Error al actualizar ✗', true);
+    toast('Error al actualizar â', true);
   } finally {
     btn.classList.remove('spinning');
     btn.disabled = false;
   }
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // MODAL
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function openAdd() {
   EDT = null; CTY = 'stock';
-  document.getElementById('modalT').textContent = 'Nueva posición';
+  document.getElementById('modalT').textContent = 'Nueva posiciÃ³n';
   document.getElementById('iTk').value = '';
   document.getElementById('iQty').value = '';
   document.getElementById('iAvg').value = '';
@@ -740,14 +740,14 @@ function openEdit(id) {
   const h = H.find(x => x.id === id);
   if (!h) return;
   EDT = id; CTY = h.ty;
-  document.getElementById('modalT').textContent = 'Editar posición';
+  document.getElementById('modalT').textContent = 'Editar posiciÃ³n';
   document.getElementById('iTk').value = h.tk;
   document.getElementById('iQty').value = h.qty;
   document.getElementById('iAvg').value = h.avg;
   document.getElementById('iBrk').value = h.brk || '';
   document.getElementById('delBtn').classList.remove('hidden');
   setType(h.ty);
-  setAvgCur(h.avgCur || 'USD');   // ← restore saved currency
+  setAvgCur(h.avgCur || 'USD');   // â restore saved currency
   document.getElementById('overlay').classList.remove('hidden');
 }
 
@@ -765,8 +765,8 @@ function setType(ty) {
   document.getElementById('tStk').className = 'type-btn' + (ty === 'stock' ? ' on' : '');
   document.getElementById('tCry').className = 'type-btn' + (ty === 'crypto' ? ' on' : '');
   document.getElementById('tkHint').textContent = ty === 'stock'
-    ? 'Escribe nombre o ticker · BVC agrega .CL · Ej: PFBCOLOM.CL, ISA.CL'
-    : 'Escribe el nombre o símbolo · Ej: Bitcoin, Ethereum, Solana…';
+    ? 'Escribe nombre o ticker Â· BVC agrega .CL Â· Ej: PFBCOLOM.CL, ISA.CL'
+    : 'Escribe el nombre o sÃ­mbolo Â· Ej: Bitcoin, Ethereum, Solanaâ¦';
   if (ty === 'crypto') setAvgCur('USD');
   hideDropdown();
 }
@@ -777,12 +777,12 @@ function setAvgCur(cur) {
   document.getElementById('btnCOP').className = cur === 'COP' ? 'on' : '';
   document.getElementById('avgHint').textContent = cur === 'COP'
     ? 'Precio en pesos colombianos (COP) al momento de compra.'
-    : 'Precio en dólares (USD) al momento de compra.';
+    : 'Precio en dÃ³lares (USD) al momento de compra.';
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // AUTOCOMPLETE
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 let _acTimer = null;
 
 function onTickerChange() {
@@ -792,16 +792,16 @@ function onTickerChange() {
   // Auto-detect moneda
   if (CTY === 'stock' && tk.endsWith('.CL')) {
     if (ACUR !== 'COP') setAvgCur('COP');
-    document.getElementById('avgHint').textContent = '🇨🇴 Acción BVC detectada · ingresa el precio en COP. La TRM se obtiene automáticamente.';
+    document.getElementById('avgHint').textContent = 'ð¨ð´ AcciÃ³n BVC detectada Â· ingresa el precio en COP. La TRM se obtiene automÃ¡ticamente.';
   } else if (CTY === 'stock' && !tk.endsWith('.CL') && ACUR === 'COP') {
     setAvgCur('USD');
-    document.getElementById('avgHint').textContent = 'Precio en dólares (USD) al momento de compra.';
+    document.getElementById('avgHint').textContent = 'Precio en dÃ³lares (USD) al momento de compra.';
   }
 
   // Autocomplete: buscar si hay 2+ caracteres
   clearTimeout(_acTimer);
   if (raw.length < 2) { hideDropdown(); return; }
-  showAcMsg('Buscando…');
+  showAcMsg('Buscandoâ¦');
   _acTimer = setTimeout(() => searchTickers(raw), 380);
 }
 
@@ -821,7 +821,7 @@ function hideDropAfter() {
 }
 
 async function searchTickers(q) {
-  // Proxy serverless en Vercel — evita bloqueos CORS y anti-bot de Yahoo
+  // Proxy serverless en Vercel â evita bloqueos CORS y anti-bot de Yahoo
   const url = `/api/search?q=${encodeURIComponent(q)}`;
   try {
     const data = await fetch(url, { cache: 'no-store' }).then(r => r.json());
@@ -836,8 +836,8 @@ async function searchTickers(q) {
     drop.innerHTML = quotes.map((r, i) => {
       const isBVC  = r.exchange === 'BVC' || r.symbol.endsWith('.CL');
       const isCrypto = r.quoteType === 'CRYPTOCURRENCY';
-      const exLabel = isBVC ? '🇨🇴 BVC' : (r.exchDisp || r.exchange || '');
-      const typeLabel = isCrypto ? 'Cripto' : r.typeDisp || 'Acción';
+      const exLabel = isBVC ? 'ð¨ð´ BVC' : (r.exchDisp || r.exchange || '');
+      const typeLabel = isCrypto ? 'Cripto' : r.typeDisp || 'AcciÃ³n';
       return `<div class="ac-item"
                    data-sym="${r.symbol}"
                    data-bvc="${isBVC}"
@@ -871,7 +871,7 @@ function selectTicker(el) {
   // Auto-currency
   if (isBVC) {
     setAvgCur('COP');
-    document.getElementById('avgHint').textContent = '🇨🇴 Acción BVC · ingresa el precio en pesos (COP). La TRM se obtiene automáticamente.';
+    document.getElementById('avgHint').textContent = 'ð¨ð´ AcciÃ³n BVC Â· ingresa el precio en pesos (COP). La TRM se obtiene automÃ¡ticamente.';
     document.getElementById('tkHint').textContent = `BVC detectado: ${sym}`;
   } else if (!isCrypto) {
     setAvgCur('USD');
@@ -887,20 +887,20 @@ async function saveHolding() {
   const avg = parseFloat(document.getElementById('iAvg').value);
   const brk = document.getElementById('iBrk').value.trim();
 
-  if (!tk)           { toast('Ingresa un ticker ⚠', true); return; }
-  if (!qty || qty<=0){ toast('Cantidad inválida ⚠', true); return; }
-  if (!avg || avg<=0){ toast('Precio inválido ⚠', true);   return; }
+  if (!tk)           { toast('Ingresa un ticker â ', true); return; }
+  if (!qty || qty<=0){ toast('Cantidad invÃ¡lida â ', true); return; }
+  if (!avg || avg<=0){ toast('Precio invÃ¡lido â ', true);   return; }
 
-  // ← FIX: forzar COP automáticamente para todas las acciones BVC (.CL)
+  // â FIX: forzar COP automÃ¡ticamente para todas las acciones BVC (.CL)
   const finalCur = (CTY === 'stock' && tk.endsWith('.CL')) ? 'COP' : ACUR;
 
   if (EDT) {
     const i = H.findIndex(x => x.id === EDT);
     if (i >= 0) H[i] = { ...H[i], tk, ty: CTY, qty, avg, avgCur: finalCur, brk };
-    toast('Actualizado ✓');
+    toast('Actualizado â');
   } else {
     H.push({ id: 'h' + Date.now(), tk, ty: CTY, qty, avg, avgCur: finalCur, brk });
-    toast(tk.endsWith('.CL') ? '🇨🇴 BVC · precio en COP guardado ✓' : 'Agregado ✓');
+    toast(tk.endsWith('.CL') ? 'ð¨ð´ BVC Â· precio en COP guardado â' : 'Agregado â');
   }
   save();
   closeModal();
@@ -915,7 +915,7 @@ function confirmDelete() {
   if (!EDT) return;
   const h = H.find(x => x.id === EDT);
   if (!h) return;
-  if (!confirm(`¿Eliminar ${h.tk}?`)) return;
+  if (!confirm(`Â¿Eliminar ${h.tk}?`)) return;
   H = H.filter(x => x.id !== EDT);
   save();
   closeModal();
@@ -923,9 +923,9 @@ function confirmDelete() {
   toast('Eliminado');
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // TOAST
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function toast(msg, err = false) {
   document.querySelector('.toast')?.remove();
   const el = document.createElement('div');
@@ -936,9 +936,9 @@ function toast(msg, err = false) {
   setTimeout(() => el.remove(), 3000);
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // OFFLINE DETECTION
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 function checkOnline() {
   document.getElementById('offlineBanner').classList.toggle('hidden', navigator.onLine);
 }
@@ -946,26 +946,51 @@ window.addEventListener('online', checkOnline);
 window.addEventListener('offline', checkOnline);
 checkOnline();
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // SERVICE WORKER
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 // INIT
-// ─────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââ
 load();
 render();
 
 // Auto-refresh if data > 30 min old, never refreshed, OR any holding has a stale error
 if (H.length) {
   const age = TS ? Date.now() - new Date(TS).getTime() : Infinity;
-  // No reintentar BVC (err:'bvc') — ya sabemos que no hay cobertura, sólo recargar errores reales
+  // No reintentar BVC (err:'bvc') â ya sabemos que no hay cobertura, sÃ³lo recargar errores reales
   const hasErrors = H.some(h => { const p = P[h.tk.toUpperCase()]; return !p || (p.err && p.err !== 'bvc'); });
   if (age > 30 * 60 * 1000 || hasErrors) doRefresh();
 }
+
+function exportData() {
+  const data = localStorage.getItem('mi_portfolio') || '{}';
+  const blob = new Blob([data], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mi-portfolio.json';
+  a.click();
+  toast('Portafolio exportado ✓');
+}
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      JSON.parse(ev.target.result); // validate
+      localStorage.setItem('mi_portfolio', ev.target.result);
+      toast('Portafolio importado ✓');
+      setTimeout(() => location.reload(), 800);
+    } catch { toast('Archivo inválido'); }
+  };
+  reader.readAsText(file);
+}
+
 </script>
 </body>
 </html>
