@@ -968,7 +968,7 @@ if (H.length) {
 }
 
 function exportData() {
-  var data = localStorage.getItem('mpf_v3') || '{}';
+  var data = localStorage.getItem(SK) || '{}';
   var blob = new Blob([data], {type:'application/json'});
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -983,7 +983,7 @@ function importData(e) {
   reader.onload = function(ev) {
     try {
       JSON.parse(ev.target.result);
-      localStorage.setItem('mpf_v3', ev.target.result);
+      localStorage.setItem(SK, ev.target.result);
       toast('Portafolio importado ✓');
       setTimeout(function(){ location.reload(); }, 800);
     } catch(err) { toast('Archivo inválido'); }
