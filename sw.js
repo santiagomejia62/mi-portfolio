@@ -21,7 +21,6 @@ self.addEventListener('fetch', e => {
   const isAPI = API_HOSTS.some(h => url.includes(h));
 
   if (isAPI) {
-    // Network-only for API calls; return empty JSON on failure
     e.respondWith(
       fetch(e.request).catch(() =>
         new Response('{}', { headers: { 'Content-Type': 'application/json' } })
@@ -30,7 +29,6 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Cache-first for app shell
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request))
   );
