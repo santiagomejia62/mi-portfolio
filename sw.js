@@ -1,4 +1,4 @@
-const V = 'mpf-v1';
+const V = 'mpf-v2';
 const SHELL = ['./index.html', './manifest.json', './icon.svg'];
 const API_HOSTS = ['yahoo', 'coingecko', 'exchangerate', 'allorigins'];
 
